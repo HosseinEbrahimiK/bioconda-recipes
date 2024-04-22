@@ -1,0 +1,43 @@
+{% set name = "tamper" %}
+{% set version = "1.0.0" %}
+
+package:
+  name: '{{ name|lower }}'
+  version: '{{ version }}'
+
+source:
+  url: https://github.com/bcgsc/tAMPer/blob/master/tAMPer_v{{ version }}.tar.gz
+  sha256: d7b570a3226b8568adcdc5abb1a881dc28f2bf82a2a131c2fe59e0b898f7a052
+
+build:
+  number: 1
+  noarch: generic
+  run_exports:
+    - {{ pin_subpackage(name, max_pin='x.x.x') }}
+
+requirements:
+  host:
+    - python >=3.9
+  run:
+    - python >=3.9
+    - pytorch =1.13.1
+    - pyg =2.3.0
+    - pytorch-cluster
+    - pytorch-scatter
+    - transformers
+    - numpy
+    - biopython
+    - pandas
+    - loguru
+
+test:
+  commands:
+    - train_tAMPer -h
+    - predict_tAMPer -h
+
+about:
+  home: https://github.com/bcgsc/tAMPer
+  license: GPL-3
+  license_family: GPL
+  license_file: LICENSE
+  summary: Structure-aware deep learning model for peptides toxicity prediction
