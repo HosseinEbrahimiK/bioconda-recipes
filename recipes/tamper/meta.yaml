@@ -21,9 +21,9 @@ requirements:
   run:
     - python >=3.9
     - pytorch =1.13.1
-    - pyg =2.3.0
-    - pytorch-cluster
-    - pytorch-scatter
+    - pytorch_geometric =2.3.0
+    - pytorch_cluster
+    - pytorch_scatter
     - transformers
     - numpy
     - biopython
